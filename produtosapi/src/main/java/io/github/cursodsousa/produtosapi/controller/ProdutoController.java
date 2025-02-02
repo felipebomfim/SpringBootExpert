@@ -1,5 +1,6 @@
 package io.github.cursodsousa.produtosapi.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +35,13 @@ public class ProdutoController {
         return produto;
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public Produto obterPorId(@PathVariable String id){
         return produtoRepository.findById(id).orElse(null);
+    }
+
+    @GetMapping()
+    public List<Produto> obterTodosOsProdutos(){
+        return produtoRepository.findAll();
     }
 }
